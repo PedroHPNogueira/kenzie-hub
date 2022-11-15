@@ -10,6 +10,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import { addTechSchema } from "../../validations/addTech";
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext";
+import {motion} from "framer-motion"
 
 interface IModalAddTech{
     setIsModalOn: React.Dispatch<React.SetStateAction<boolean>>
@@ -35,11 +36,12 @@ function ModalAddTech({setIsModalOn}: IModalAddTech){
 
     function onSubmitFunction(data: IAddTechData){
         addTech(data)
+        setIsModalOn(false)
     }
  
     return (
         <Modal>
-            <div>
+            <motion.div animate={{y: [50,0], opacity: [0, 1]}} transition={{duration: 0.25,times: [0,1]}}>
                 <div>
                     <Text kind="tittle1">Cadastrar Tecnologia</Text>
                     <Button onClick={() => {setIsModalOn(false)}} variant={"button4"}>X</Button>
@@ -60,7 +62,7 @@ function ModalAddTech({setIsModalOn}: IModalAddTech){
 
                     <Button variant={"button1"}>Cadastrar tecnologia</Button>
                 </form>
-            </div>
+            </motion.div>
         </Modal>
     )
 }

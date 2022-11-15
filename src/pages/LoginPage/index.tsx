@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup"
 import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
+import {motion} from "framer-motion"
 
 interface ILoginData{
     email: string,
@@ -34,8 +35,10 @@ function LoginPage(){
 
     return (
         <LoginMain>
-            <Text kind="logo">Kenzie Hub</Text>
-            <div>
+            <motion.p animate={{y: [20,0], opacity: [0, 1]}} transition={{times: [0,0.5]}}>
+                <Text kind="logo">Tech Hub</Text>
+            </motion.p>
+            <motion.div animate={{y: [30,0], opacity: [0, 1]}} transition={{times: [0.25,0.75]}}>
                 <Text kind="tittle1">Login</Text>
 
                 <form onSubmit={handleSubmit(onSubmitFunction)}>
@@ -53,7 +56,7 @@ function LoginPage(){
 
                 <Text kind="secondaryText1">Ainda não possui uma conta?</Text>
                 <Link to={"/register"}>Cadastrar</Link>
-            </div>
+            </motion.div>
         </LoginMain>
     )
 }

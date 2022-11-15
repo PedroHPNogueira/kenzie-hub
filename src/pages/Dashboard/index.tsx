@@ -6,6 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { useState } from "react";
 import ModalAddTech from "../../components/ModalAddTech";
 import TechItem from "../../components/TechItem";
+import {motion} from "framer-motion"
 
 
 function DashboardPage(){
@@ -25,24 +26,36 @@ function DashboardPage(){
     return (
         <>
             <DashMain>
-                <div>
-                    <Text kind="logo">Kenzie Hub</Text>
-                    <Button onClick={logoutFunction} variant="button3" >Sair</Button>
+                <div className="header">
+                    <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 0.0}}>
+                        <Text kind="logo">Tech Hub</Text>
+                    </motion.div>
+                    <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 0.2}}>
+                        <Button onClick={logoutFunction} variant="button3" >Sair</Button>
+                    </motion.div>
                 </div>
                 <div className="name">
-                    <Text kind="tittle1">Olá, {user?.name}</Text>
-                    <Text kind="secondaryText1">{user?.course_module}</Text>
+                    <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 0.4}}>
+                        <Text kind="tittle1">Olá, {user?.name}</Text>
+                    </motion.div>
+                    <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 0.6}}>
+                        <Text className="module" kind="secondaryText1">{user?.course_module}</Text>
+                    </motion.div>
                 </div>
                 <div className="techDiv">
                     <div>
-                        <Text kind="tittle1">Tecnologias</Text>
-                        <Button onClick={() => {showModal()}} variant="button3">+</Button>
+                        <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 0.8}}>
+                            <Text kind="tittle1">Tecnologias</Text>
+                        </motion.div>
+                        <motion.div animate={{x: [-20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 1.0}}>
+                            <Button onClick={() => {showModal()}} variant="button3">+</Button>
+                        </motion.div>      
                     </div>
-                    <ul>
+                    <motion.ul animate={{y: [20,0], opacity: [0, 1]}} transition={{duration: 0.5,times: [0,1], delay: 1.5}}>
                         {user?.techs.map((tech) => (
                             <TechItem key={tech.id} status={tech.status} title={tech.title} id={tech.id}></TechItem>
                         ))}
-                    </ul>
+                    </motion.ul>
                 </div>
             </DashMain>
             {
