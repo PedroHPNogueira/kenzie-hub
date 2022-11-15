@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup"
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import {motion} from "framer-motion"
 
 interface IRegisterData{
     name: string,
@@ -36,11 +37,15 @@ function RegisterPage(){
     return (
         <RegisterMain>
             <div className="logoDiv">
-                <Text kind="logo">Kenzie Hub</Text>
-                <Link to={"/login"}>Voltar</Link>
+                <motion.p animate={{y: [20,0], opacity: [0, 1]}} transition={{ duration: 0.5 ,times: [0,1], delay:0}}>
+                    <Text kind="logo">Tech Hub</Text>
+                </motion.p>
+                <motion.p animate={{y: [20,0], opacity: [0, 1]}} transition={{ duration: 0.5 ,times: [0,1], delay:0.2}}>
+                    <Link to={"/login"}>Voltar</Link>
+                </motion.p>             
             </div>
-            <div className="formDiv">
-                <Text kind="tittle1">Login</Text>
+            <motion.div className="formDiv" animate={{y: [20,0], opacity: [0, 1]}} transition={{ duration: 0.5 ,times: [0,1], delay:0.4}}>
+                <Text kind="tittle1">Registrar</Text>
                 <Text kind="secondaryText1">Rápido e grátis, vamos nessa</Text>
                 <form onSubmit={handleSubmit(onSubmitFunction)}>
 
@@ -79,7 +84,7 @@ function RegisterPage(){
                     <p>{errors.course_module?.message}</p>
                     <Button type="submit" variant="button1">Cadastrar</Button>
                 </form>
-            </div>
+            </motion.div>
         </RegisterMain>
     )
 }

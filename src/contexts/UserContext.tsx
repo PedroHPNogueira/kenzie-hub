@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import {toast} from "react-toastify"
 
 
 interface IUserContextProps{
@@ -66,8 +67,16 @@ const UserProvider = ({ children }: IUserContextProps) => {
             await api.post("/users",data)
 
             navigate("/login")
+
+            toast.success("Cadastro realizado com sucesso",{
+                autoClose:1500,
+            })
         } catch (error){
             console.log(error)
+
+            toast.error("Email já cadastrado",{
+                autoClose:1500,
+            })
         }
     }
 
@@ -81,8 +90,16 @@ const UserProvider = ({ children }: IUserContextProps) => {
             setUser(response.data.user)
             setToken(response.data.token)
             navigate("/dashboard")
+
+            toast.success("Login realizado com sucesso",{
+                autoClose:1500,
+            })
         } catch (error) {
             console.error(error);
+
+            toast.error("Email ou senha incorretos",{
+                autoClose:1500,
+            })
         }
     }
 
